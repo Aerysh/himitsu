@@ -23,6 +23,7 @@ def decrypt_file(directory, password):
             with open(file_path, "wb") as file:
                 file.write(decrypted)
 
+            print(f"Decryption comlpete. Successfully decrytped files in {directory}.")
         except InvalidToken:
             print(f"Failed to decrypt {filename} (wrong password or corrupted file)")
             continue

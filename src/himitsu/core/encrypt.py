@@ -24,3 +24,5 @@ def encrypt_file(directory: str, password: str):
 
         with open(file_path, "wb") as encrypted_file:
             encrypted_file.write(salt + encrypted)
+
+        print(f"Encryption complete. Successfully encrypted files in {directory}.")
