@@ -2,18 +2,19 @@
 name = "himitsu"
 version = "0.1.0"
 description = ""
-authors = [
-    {name = "Ahmad Azwar Annas",email = "ahmadazw2@gmail.com"}
-]
+authors = [{ name = "Ahmad Azwar Annas", email = "ahmadazw2@gmail.com" }]
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = [
-]
+dependencies = ["cryptography (>=44.0.2,<45.0.0)"]
 
 [tool.poetry]
-packages = [{include = "himitsu", from = "src"}]
+packages = [{ include = "himitsu", from = "src" }]
 
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+
+[tool.poetry.scripts]
+himitsu = "himitsu.core.cli:main"
