@@ -1,8 +1,9 @@
 import argparse
 import getpass
 
-from himitsu.core.decrypt import decrypt_file
-from himitsu.core.encrypt import encrypt_file
+
+from himitsu.core.decrypt import decrypt_directory
+from himitsu.core.encrypt import encrypt_directory
 from himitsu.modules.dir_path import dir_path
 
 
@@ -32,8 +33,10 @@ def main():
 
     if args.command == "encrypt":
         password = getpass.getpass("Enter encryption password: ")
-        encrypt_file(args.path, password)
+
+        encrypt_directory(args.path, password)
 
     elif args.command == "decrypt":
         password = getpass.getpass("Enter decryption password: ")
-        decrypt_file(args.path, password)
+
+        decrypt_directory(args.path, password)
