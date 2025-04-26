@@ -4,7 +4,9 @@ Simple and secure file encryption and decryption
 
 ## Features
 
+- AES128 encryption
 - Argon2id key derivation
+- File name encryption
 - Secure random numbers for salt
 
 ## Usage
