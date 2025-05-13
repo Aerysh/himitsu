@@ -3,14 +3,14 @@ import os
 
 from cryptography.fernet import Fernet
 
+from himitsu.config import MAGIC_BYTES, VERSION
 from himitsu.modules.derive_key import derive_key
 from himitsu.modules.generate_salt import generate_salt
 
 
 def encrypt_data(data: bytes, fernet: Fernet, salt: bytes) -> bytes:
     encrypted_data = fernet.encrypt(data)
-
-    return salt + encrypted_data
+    return MAGIC_BYTES + VERSION.to_bytes(1, "big") + salt + encrypted_data
 
 
 def encrypt_filename(filename: str, salt: bytes, fernet: Fernet) -> str:
@@ -33,6 +33,12 @@ def process_file(file_path: str, password: str) -> None:
     salt = generate_salt()
     key = derive_key(password, salt)
     fernet = Fernet(key)
+
+    with open(file_path, "rb") as f:
+        header = f.read(len(MAGIC_BYTES))
+        if header == MAGIC_BYTES:
+            print(f"File {file_path} is already encrypted")
+            return
 
     encrypt_file(file_path, salt, fernet)
 
